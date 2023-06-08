@@ -1,5 +1,4 @@
 const Post = require('../models/postModel');
-console.log("hello controller");
 exports.createPost = async (req, res) => {
     try{
         const {title, body} = req.body;
@@ -17,6 +16,21 @@ exports.createPost = async (req, res) => {
         console.log(error);
         return res.status(400).json({
             error:"Error while creating post"
+        });
+    }
+}
+exports.getPost = async (req, res) => {
+    try{
+        const post = await Post.find().populate("likes").populate("comments").exec();
+
+        res.json({
+            post
+        });
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).json({
+            error:'Error while fetching posts'
         });
     }
 }
