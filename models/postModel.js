@@ -1,14 +1,22 @@
 const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema({
-    post:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Post",
+    title:{
+        type:String,
+        required:true
     },
-    user:{
+    body:{
         type:String,
         required:true,
-    }
+    },
+    likes:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Like",
+    }],
+    comments:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Comment",
+    }]
 });
 
 const Post = new mongoose.model('Post', postSchema);
