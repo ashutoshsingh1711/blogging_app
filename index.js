@@ -7,6 +7,8 @@ const PORT = process.env.PORT || 3000;
 // By using express.json(), you can easily handle JSON data in your Express application. It automatically parses the request body and converts it into a JavaScript object
 app.use(express.json()); 
 
+const blog = require('./routes/blogRoutes');
+
 const connectWithDb = require('./config/database');
 connectWithDb();
 
